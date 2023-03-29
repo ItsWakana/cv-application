@@ -11,6 +11,8 @@ class PersonalInfo extends Component {
         }
 
         this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleAgeChange = this.handleAgeChange.bind(this);
+        this.handleAddressChange = this.handleAddressChange.bind(this);
     }
 
     handleNameChange(e) {
@@ -19,12 +21,32 @@ class PersonalInfo extends Component {
         });
     }
 
+    handleAgeChange(e) {
+        this.setState({
+            age: e.target.value
+        });
+    }
+
+    handleAddressChange(e) {
+        this.setState({
+            address: e.target.value
+        })
+    }
+
     render() {
         const { name, age, address } = this.state;
         return (
             <form>
                 <h3>Personal Info</h3>
-                <input type="text" value={name} onChange={this.handleNameChange} placeholder="Name"></input>
+                <div>
+                    <input type="text" value={name} onChange={this.handleNameChange} placeholder="Name"></input>
+                </div>
+                <div>
+                    <input type="number" value={age} onChange={this.handleAgeChange} placeholder="Age"></input>
+                </div>
+                <div>
+                    <input type="text" value={address} onChange={this.handleAddressChange} placeholder="Address"></input>
+                </div>
             </form>
         )
     }
