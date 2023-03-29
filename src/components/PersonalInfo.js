@@ -37,14 +37,14 @@ class PersonalInfo extends Component {
         const { name, age, address } = this.state;
         return (
             <form>
-                <h3>Personal Info</h3>
-                <div>
+                <h3 className="personal-info__heading">Personal Info</h3>
+                <div className="personal-info__input-container">
                     <input type="text" value={name} onChange={this.handleNameChange} placeholder="Name"></input>
                 </div>
-                <div>
+                <div className="personal-info__input-container">
                     <input type="number" value={age} onChange={this.handleAgeChange} placeholder="Age"></input>
                 </div>
-                <div>
+                <div className="personal-info__input-container">
                     <input type="text" value={address} onChange={this.handleAddressChange} placeholder="Address"></input>
                 </div>
             </form>
