@@ -3,6 +3,8 @@
     --input-border-clr: rgb(37, 87, 116);
     --submit-button-clr: rgb(37, 87, 116);
     --off-white-clr: rgb(207, 207, 207);
+
+    font-size: 13px;
 }
 
 body {
@@ -34,7 +36,14 @@ body {
     background: none;
 }
 
-.personal-info__button-container button {
+.job-info__button-container {
+    display: flex;
+    gap: 7px;
+}
+
+.personal-info__button-container button,
+.job-info__button-container button,
+.work-experience button {
     border: none;
     border-radius: 4px;
     color: var(--off-white-clr);
@@ -44,15 +53,17 @@ body {
     cursor: pointer;
 }
 
-.personal-info__detail-container p {
-    border: solid 1px var(--input-border-clr);
+.personal-info__detail-container p,
+.job-info__detail-container p {
+    border-bottom: solid 1px var(--input-border-clr);
     border-radius: 4px;
     width: 20%;
     min-width: 150px;
     padding: 8px;
 }
 
-.personal-info__detail-container h4 {
+.personal-info__detail-container h4,
+.job-info__detail-container h4 {
     margin: 0;
     font-size: 0.8rem;
 }

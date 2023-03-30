@@ -6,14 +6,14 @@ class PersonalInfo extends Component {
 
         this.state = {
             name: '',
-            age: '',
-            address: '',
+            email: '',
+            phoneNumber: '',
             isCompleted: false
         }
 
         this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleAgeChange = this.handleAgeChange.bind(this);
-        this.handleAddressChange = this.handleAddressChange.bind(this);
+        this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handleNumberChange = this.handleNumberChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
     }
@@ -24,15 +24,15 @@ class PersonalInfo extends Component {
         });
     }
 
-    handleAgeChange(e) {
+    handleEmailChange(e) {
         this.setState({
-            age: e.target.value
+            email: e.target.value
         });
     }
 
-    handleAddressChange(e) {
+    handleNumberChange(e) {
         this.setState({
-            address: e.target.value
+            phoneNumber: e.target.value
         })
     }
 
@@ -57,7 +57,7 @@ class PersonalInfo extends Component {
     }
 
     render() {
-        const { name, age, address } = this.state;
+        const { name, email, phoneNumber } = this.state;
 
         if (this.state.isCompleted) {
             return (
@@ -68,12 +68,12 @@ class PersonalInfo extends Component {
                         <p>{name}</p>
                     </div>
                     <div className="personal-info__detail-container">
-                        <h4>Age:</h4>
-                        <p>{age}</p>
+                        <h4>Email:</h4>
+                        <p>{email}</p>
                     </div>
                     <div className="personal-info__detail-container">
-                        <h4>Address:</h4>
-                        <p>{address}</p>
+                        <h4>Phone Number:</h4>
+                        <p>{phoneNumber}</p>
                     </div>
                     <div className="personal-info__button-container">
                         <button className="edit-button" onClick={this.handleEdit}>Edit</button>
@@ -89,10 +89,10 @@ class PersonalInfo extends Component {
                     <input type="text" value={name} onChange={this.handleNameChange} placeholder="Name"></input>
                 </div>
                 <div className="personal-info__input-container">
-                    <input type="number" value={age} onChange={this.handleAgeChange} placeholder="Age"></input>
+                    <input type="text" value={email} onChange={this.handleEmailChange} placeholder="Email"></input>
                 </div>
                 <div className="personal-info__input-container">
-                    <input type="text" value={address} onChange={this.handleAddressChange} placeholder="Address"></input>
+                    <input type="number" value={phoneNumber} onChange={this.handleNumberChange} placeholder="Phone"></input>
                 </div>
                 <div className="personal-info__button-container">
                     <button type="submit" onClick={this.handleSubmit}>Submit</button>

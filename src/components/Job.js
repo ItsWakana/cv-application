@@ -6,11 +6,15 @@ class Job extends Component {
 
         this.state = {
             title: '',
-            company: ''
+            company: '',
+            isCompleted: false
         }
 
         this.handleCompanyChange = this.handleCompanyChange.bind(this);
         this.handleTitleChange = this.handleTitleChange.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
+        this.parseJob = this.parseJob.bind(this);
+        this.deleteJob = this.deleteJob.bind(this);
 
     }
 
@@ -26,11 +30,63 @@ class Job extends Component {
         });
     }
 
-    render() {
+    handleSubmit(e) {
+        e.preventDefault();
+    }
 
+    handleEdit(e) {
+        e.preventDefault();
+
+        this.setState({
+            isCompleted: false,
+        });
+    }
+
+    parseJob(e) {
+        e.preventDefault();
+        const { id, parseJob } = this.props;
+
+        for (const item in this.state) {
+            if (this.state[item] === '') return;
+        }
+
+        this.setState({
+            isCompleted: true
+        });
+        parseJob(id, this.state);
+    }
+
+    deleteJob(e) {
+        e.preventDefault();
+        const { id, removeJob } = this.props;
+
+        removeJob(id, this.state);
+    }
+
+    render() {
         const { title, company } = this.state;
+
+        if (this.state.isCompleted) {
+            return (
+                <div className="job-info" style={{color: 'white'}}>
+                    <h3 className="job-info__heading">Job Info</h3>
+                    <div className="job-info__detail-container">
+                        <h4>Job Title:</h4>
+                        <p>{title}</p>
+                    </div>
+                    <div className="job-info__detail-container">
+                        <h4>Company:</h4>
+                        <p>{company}</p>
+                    </div>
+                    <div className="job-info__button-container">
+                        <button className="edit-button" onClick={this.handleEdit}>Edit</button>
+                        <button onClick={this.deleteJob}>Delete</button>
+                    </div>
+                </div>
+            )
+        }
         return (
-            <div className="job-info">
+            <form className="job-info">
                 <h3 className="job-info__heading">Job Info</h3>
                 <div className="job-info__input-container">
                     <input type="text" value={title} onChange={this.handleTitleChange} placeholder="Job Title"></input>
@@ -38,7 +94,11 @@ class Job extends Component {
                 <div className="job-info__input-container">
                     <input type="text" value={company} onChange={this.handleCompanyChange} placeholder="Company"></input>
                 </div>
-            </div>
+                <div className="job-info__button-container">
+                    <button type="submit" onClick={this.parseJob}>Add</button>
+                    <button onClick={this.deleteJob}>Delete</button>
+                </div>
+            </form>
         )
     }
 }
