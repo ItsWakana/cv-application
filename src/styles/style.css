@@ -7,11 +7,14 @@
 
 body {
     background-color: rgb(7, 8, 34);
+    box-sizing: border-box;
 }
 
 .personal-info {
     display: flex;
     flex-direction: column;
+    color: var(--off-white-clr);
+    gap: 16px;
 }
 
 .personal-info__heading {
@@ -39,5 +42,13 @@ body {
 
 .personal-info__detail-container p {
     border: solid 1px var(--input-border-clr);
+    border-radius: 4px;
+    width: 20%;
+    min-width: 150px;
     padding: 8px;
+}
+
+.personal-info__detail-container h4 {
+    margin: 0;
+    font-size: 0.8rem;
 }
