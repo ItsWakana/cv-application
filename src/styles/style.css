@@ -12,7 +12,6 @@ body {
 .personal-info {
     display: flex;
     flex-direction: column;
-    gap: 12px;
 }
 
 .personal-info__heading {
@@ -36,4 +35,9 @@ body {
     background: var(--submit-button-clr);
     padding: 8px 8px;
     cursor: pointer;
+}
+
+.personal-info__detail-container p {
+    border: solid 1px var(--input-border-clr);
+    padding: 8px;
 }
