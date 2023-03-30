@@ -39,6 +39,10 @@ class PersonalInfo extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
+        for (const item in this.state) {
+            if (this.state[item] === '') return;
+        }
+
         this.setState({
             isCompleted: true
         });
@@ -54,8 +58,6 @@ class PersonalInfo extends Component {
 
     render() {
         const { name, age, address } = this.state;
-
-        // use a bool to check if our form is completed, if its true and its completed. we can render the state of the form as a completed and display the details the user entered
 
         if (this.state.isCompleted) {
             return (
@@ -74,7 +76,7 @@ class PersonalInfo extends Component {
                         <p>{address}</p>
                     </div>
                     <div className="personal-info__button-container">
-                        <button onClick={this.handleEdit}>Edit</button>
+                        <button className="edit-button" onClick={this.handleEdit}>Edit</button>
                     </div>
                 </div>
             )
