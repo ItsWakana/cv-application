@@ -1,5 +1,8 @@
 :root {
     font-family: Arial, Helvetica, sans-serif;
+    --input-border-clr: rgb(37, 87, 116);
+    --submit-button-clr: rgb(37, 87, 116);
+    --off-white-clr: rgb(207, 207, 207);
 }
 
 body {
@@ -13,14 +16,24 @@ body {
 }
 
 .personal-info__heading {
-    color: rgb(207, 207, 207);
+    color: var(--off-white-clr);
 }
 
 .personal-info__input-container input {
-    border: solid 1px rgb(37, 87, 116);
-    color: rgb(207, 207, 207);
+    border: solid 1px var(--input-border-clr);
+    color: var(--off-white-clr);
     border-radius: 4px;
     padding: 8px;
     outline: none;
     background: none;
+}
+
+.personal-info__button-container button {
+    border: none;
+    border-radius: 4px;
+    color: var(--off-white-clr);
+    font-weight: bold;
+    background: var(--submit-button-clr);
+    padding: 8px 8px;
+    cursor: pointer;
 }

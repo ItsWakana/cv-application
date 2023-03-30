@@ -47,6 +47,9 @@ class PersonalInfo extends Component {
                 <div className="personal-info__input-container">
                     <input type="text" value={address} onChange={this.handleAddressChange} placeholder="Address"></input>
                 </div>
+                <div className="personal-info__button-container">
+                    <button type="submit">Submit</button>
+                </div>
             </form>
         )
     }
