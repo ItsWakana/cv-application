@@ -62,13 +62,16 @@ class PersonalInfo extends Component {
                 <div className="personal-info" style={{color: 'white'}}>
                     <h3 className="personal-info__heading">Personal Info</h3>
                     <div className="personal-info__detail-container">
-                        <p>Name: {name}</p>
+                        <h4>Name:</h4>
+                        <p>{name}</p>
                     </div>
                     <div className="personal-info__detail-container">
-                        <p>Age: {age}</p>
+                        <h4>Age:</h4>
+                        <p>{age}</p>
                     </div>
                     <div className="personal-info__detail-container">
-                        <p>Address: {address}</p>
+                        <h4>Address:</h4>
+                        <p>{address}</p>
                     </div>
                     <div className="personal-info__button-container">
                         <button onClick={this.handleEdit}>Edit</button>
