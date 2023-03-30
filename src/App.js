@@ -1,4 +1,5 @@
 import PersonalInfo from "./components/PersonalInfo";
+import WorkExperience from "./components/WorkExperience";
 import style from './styles/style.css';
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       {/* Personal Info component */}
       <PersonalInfo />
       {/* Work experience component */}
-
+      <WorkExperience />
       {/* Education component */}
 
       

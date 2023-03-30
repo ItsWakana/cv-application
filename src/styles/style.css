@@ -10,18 +10,22 @@ body {
     box-sizing: border-box;
 }
 
-.personal-info {
+.personal-info,
+.job-info {
     display: flex;
     flex-direction: column;
     color: var(--off-white-clr);
     gap: 16px;
 }
 
-.personal-info__heading {
+.personal-info__heading,
+.work-experience__heading,
+.job-info__heading {
     color: var(--off-white-clr);
 }
 
-.personal-info__input-container input {
+.personal-info__input-container input,
+.job-info__input-container input {
     border: solid 1px var(--input-border-clr);
     color: var(--off-white-clr);
     border-radius: 4px;
