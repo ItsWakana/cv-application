@@ -71,12 +71,10 @@ class Job extends Component {
                 <div className="job-info" style={{color: 'white'}}>
                     <h3 className="job-info__heading">Job Info</h3>
                     <div className="job-info__detail-container">
-                        <h4>Job Title:</h4>
-                        <p>{title}</p>
+                        <h4>Job Title: {title}</h4>
                     </div>
                     <div className="job-info__detail-container">
-                        <h4>Company:</h4>
-                        <p>{company}</p>
+                        <h4>Company: {company}</h4>
                     </div>
                     <div className="job-info__button-container">
                         <button className="edit-button" onClick={this.handleEdit}>Edit</button>

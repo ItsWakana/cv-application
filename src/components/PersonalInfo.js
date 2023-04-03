@@ -64,16 +64,13 @@ class PersonalInfo extends Component {
                 <div className="personal-info" style={{color: 'white'}}>
                     <h3 className="personal-info__heading">Personal Info</h3>
                     <div className="personal-info__detail-container">
-                        <h4>Name:</h4>
-                        <p>{name}</p>
+                        <h4>Name: {name}</h4>
                     </div>
                     <div className="personal-info__detail-container">
-                        <h4>Email:</h4>
-                        <p>{email}</p>
+                        <h4>Email: {email}</h4>
                     </div>
                     <div className="personal-info__detail-container">
-                        <h4>Phone Number:</h4>
-                        <p>{phoneNumber}</p>
+                        <h4>Phone Number: {phoneNumber}</h4>
                     </div>
                     <div className="personal-info__button-container">
                         <button className="edit-button" onClick={this.handleEdit}>Edit</button>
