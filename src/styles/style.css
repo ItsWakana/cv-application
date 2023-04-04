@@ -5,7 +5,7 @@
     --off-white-clr: rgb(207, 207, 207);
     --background-clr: rgb(18 12 12);
 
-    font-size: 13px;
+    font-size: 20px;
 }
 
 body {
@@ -15,6 +15,15 @@ body {
     /* background-color: rgb(7, 8, 34); */
     background-color: var(--background-clr);
     box-sizing: border-box;
+}
+
+.cv-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cv-form__heading {
+    color: var(--off-white-clr);
 }
 
 .personal-info,
@@ -94,7 +103,7 @@ body {
 .job-info__detail-container,
 .school-info__detail-container {
     border: solid 1px var(--submit-button-clr);
-    padding: 5px;
+    padding: 5px 25px;
     border-radius: 8px;
 }
 
@@ -113,5 +122,10 @@ body {
 .job-info__detail-container h4,
 .school-info__detail-container h4 {
     margin: 0;
+    font-size: 0.8rem;
+}
+
+.job-info__heading,
+.school-info__heading {
     font-size: 0.8rem;
 }

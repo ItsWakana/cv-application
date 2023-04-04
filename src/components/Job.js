@@ -85,7 +85,7 @@ class Job extends Component {
         }
         return (
             <form className="job-info">
-                <h3 className="job-info__heading">Job Info</h3>
+                <h4 className="job-info__heading">Job Info</h4>
                 <div className="job-info__input-container">
                     <input type="text" value={title} onChange={this.handleTitleChange} placeholder="Job Title"></input>
                 </div>

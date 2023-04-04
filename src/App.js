@@ -42,6 +42,7 @@ class App extends Component {
   render() {
     return (
       <div className="cv-form">
+        <h1 className="cv-form__heading">CV Form</h1>
         <PersonalInfo parseData={this.setPersonalInfo}/>
         <WorkExperience parseData={this.setWorkExperience}/>
         <EducationExperience parseData={this.setEducationExperience}/>

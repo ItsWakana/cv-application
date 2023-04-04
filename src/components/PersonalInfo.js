@@ -83,7 +83,6 @@ class PersonalInfo extends Component {
 
         return (
             <form className="personal-info">
-                <h3 className="personal-info__heading">Personal Info</h3>
                 <div className="personal-info__input-container">
                     <input type="text" value={name} onChange={this.handleNameChange} placeholder="Name"></input>
                 </div>
