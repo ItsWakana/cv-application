@@ -64,7 +64,6 @@ class PersonalInfo extends Component {
         if (this.state.isCompleted) {
             return (
                 <div className="personal-info" style={{color: 'white'}}>
-                    <h3 className="personal-info__heading">Personal Info</h3>
                     <div className="personal-info__detail-container">
                         <h4>Name: {name}</h4>
                     </div>

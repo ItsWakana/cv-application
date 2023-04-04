@@ -62,7 +62,7 @@ class App extends Component {
         <PersonalInfo parseData={this.setPersonalInfo}/>
         <WorkExperience parseData={this.setWorkExperience}/>
         <EducationExperience parseData={this.setEducationExperience}/>
-        <button onClick={this.displayFormDetails}>Submit CV</button>
+        <button className="cv-form__submit-cv-button"onClick={this.displayFormDetails}>Submit CV</button>
       </div>
     )
   }

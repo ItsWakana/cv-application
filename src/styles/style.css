@@ -21,6 +21,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
 }
 .cv-form__heading,
 .cv-details__heading {
@@ -72,7 +73,8 @@ body {
 .job-info__button-container button,
 .school-info__button-container button,
 .work-experience__add-button,
-.education-experience__add-button {
+.education-experience__add-button,
+.cv-form__submit-cv-button {
     border-radius: 4px;
     font-weight: bold;
     padding: 8px 8px;
@@ -85,7 +87,8 @@ body {
 .job-info__add-button,
 .school-info__add-button,
 .job-info__edit-button,
-.school-info__edit-button {
+.school-info__edit-button,
+.cv-form__submit-cv-button {
     border: none;
     background-color: var(--submit-button-clr);
     color: var(--off-white-clr);
