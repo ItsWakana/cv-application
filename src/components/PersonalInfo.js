@@ -46,6 +46,8 @@ class PersonalInfo extends Component {
         this.setState({
             isCompleted: true
         });
+
+        this.props.parseData(this.state);
     }
 
     handleEdit(e) {

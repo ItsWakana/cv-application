@@ -55,6 +55,8 @@ class WorkExperience extends Component {
         this.setState({
             jobs: updatedJobs,
         });
+
+        this.props.parseData(updatedJobs)
     }
 
     // removeJob(index, obj) {

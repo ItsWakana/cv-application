@@ -37,6 +37,8 @@ class EducationExperience extends Component {
         this.setState({
             education: updatedSchools
         });
+
+        this.props.parseData(updatedSchools);
     }
 
     removeSchool(id) {
