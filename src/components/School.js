@@ -89,8 +89,8 @@ class School extends Component {
                         <h4>Date of Study: {dateOfStudy}</h4>
                     </div>
                     <div className="school-info__button-container">
-                        <button className="edit-button" onClick={this.handleEdit}>Edit</button>
-                        <button onClick={this.deleteSchool}>Delete</button>
+                        <button className="school-info__edit-button" onClick={this.handleEdit}>Edit</button>
+                        <button className="school-info__delete-button" onClick={this.deleteSchool}>Delete</button>
                     </div>
                 </div>
             )
@@ -108,8 +108,8 @@ class School extends Component {
                     <input type="date" value={dateOfStudy} onChange={this.handleDateChange} placeholder="Date of Study"></input>
                 </div>
                 <div className="school-info__button-container">
-                    <button type="submit" onClick={this.parseSchool}>Add</button>
-                    <button onClick={this.deleteSchool}>Delete</button>
+                    <button className="school-info__add-button" type="submit" onClick={this.parseSchool}>Add</button>
+                    <button className="school-info__delete-button" onClick={this.deleteSchool}>Delete</button>
                 </div>
             </form>
         )

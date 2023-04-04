@@ -83,7 +83,7 @@ class WorkExperience extends Component {
         return (
             <div className="work-experience">
                 <h3 className="work-experience__heading">Work Experience</h3>
-                <button onClick={this.addJob}>Add Job</button>
+                <button className="work-experience__add-button" onClick={this.addJob}>Add Job</button>
                 {this.state.jobs.map((job) => (
                     <Job key={job.id} id={job.id} parseJob={this.parseJobInfo} removeJob={this.removeJob}/>
                 ))}

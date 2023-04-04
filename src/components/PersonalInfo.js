@@ -75,7 +75,7 @@ class PersonalInfo extends Component {
                         <h4>Phone Number: {phoneNumber}</h4>
                     </div>
                     <div className="personal-info__button-container">
-                        <button className="edit-button" onClick={this.handleEdit}>Edit</button>
+                        <button className="personal-info__edit-button" onClick={this.handleEdit}>Edit</button>
                     </div>
                 </div>
             )
@@ -94,7 +94,7 @@ class PersonalInfo extends Component {
                     <input type="number" value={phoneNumber} onChange={this.handleNumberChange} placeholder="Phone"></input>
                 </div>
                 <div className="personal-info__button-container">
-                    <button type="submit" onClick={this.handleSubmit}>Submit</button>
+                    <button className="personal-info__submit-button" type="submit" onClick={this.handleSubmit}>Submit</button>
                 </div>
             </form>
         )

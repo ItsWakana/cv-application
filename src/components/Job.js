@@ -77,8 +77,8 @@ class Job extends Component {
                         <h4>Company: {company}</h4>
                     </div>
                     <div className="job-info__button-container">
-                        <button className="edit-button" onClick={this.handleEdit}>Edit</button>
-                        <button onClick={this.deleteJob}>Delete</button>
+                        <button className="job-info__edit-button" onClick={this.handleEdit}>Edit</button>
+                        <button className="job-info__delete-button" onClick={this.deleteJob}>Delete</button>
                     </div>
                 </div>
             )
@@ -93,8 +93,8 @@ class Job extends Component {
                     <input type="text" value={company} onChange={this.handleCompanyChange} placeholder="Company"></input>
                 </div>
                 <div className="job-info__button-container">
-                    <button type="submit" onClick={this.parseJob}>Add</button>
-                    <button onClick={this.deleteJob}>Delete</button>
+                    <button className="job-info__add-button" type="submit" onClick={this.parseJob}>Add</button>
+                    <button className="job-info__delete-button" onClick={this.deleteJob}>Delete</button>
                 </div>
             </form>
         )

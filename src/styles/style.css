@@ -1,9 +1,9 @@
 :root {
     font-family: Arial, Helvetica, sans-serif;
-    --input-border-clr: rgb(37, 87, 116);
-    --submit-button-clr: rgb(37, 87, 116);
+    --input-border-clr: rgb(158 22 22);
+    --submit-button-clr: rgb(158 22 22);
     --off-white-clr: rgb(207, 207, 207);
-    --background-clr: rgb(7, 8, 34);
+    --background-clr: rgb(18 12 12);
 
     font-size: 13px;
 }
@@ -61,15 +61,33 @@ body {
 .personal-info__button-container button,
 .job-info__button-container button,
 .school-info__button-container button,
-.work-experience button,
-.education-experience button {
-    border: none;
+.work-experience__add-button,
+.education-experience__add-button {
     border-radius: 4px;
-    color: var(--off-white-clr);
     font-weight: bold;
-    background: var(--submit-button-clr);
     padding: 8px 8px;
     cursor: pointer;
+}
+
+.personal-info__button-container button,
+.work-experience__add-button,
+.education-experience__add-button,
+.job-info__add-button,
+.school-info__add-button,
+.job-info__edit-button,
+.school-info__edit-button {
+    border: none;
+    background-color: var(--submit-button-clr);
+    color: var(--off-white-clr);
+
+}
+
+
+.job-info__delete-button,
+.school-info__delete-button {
+    background: none;
+    border: solid 1px var(--submit-button-clr);
+    color: var(--submit-button-clr);
 }
 
 .personal-info__detail-container,
