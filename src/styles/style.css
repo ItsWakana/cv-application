@@ -87,8 +87,7 @@ body {
 .job-info__add-button,
 .school-info__add-button,
 .job-info__edit-button,
-.school-info__edit-button,
-.cv-form__submit-cv-button {
+.school-info__edit-button {
     border: none;
     background-color: var(--submit-button-clr);
     color: var(--off-white-clr);
@@ -97,7 +96,8 @@ body {
 
 
 .job-info__delete-button,
-.school-info__delete-button {
+.school-info__delete-button,
+.cv-form__submit-cv-button {
     background: none;
     border: solid 1px var(--submit-button-clr);
     color: var(--submit-button-clr);
