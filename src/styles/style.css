@@ -22,7 +22,8 @@ body {
     flex-direction: column;
     align-items: center;
 }
-.cv-form__heading {
+.cv-form__heading,
+.cv-details__heading {
     color: var(--off-white-clr);
 }
 

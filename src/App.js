@@ -19,6 +19,7 @@ class App extends Component {
     this.setPersonalInfo = this.setPersonalInfo.bind(this);
     this.setWorkExperience = this.setWorkExperience.bind(this);
     this.setEducationExperience = this.setEducationExperience.bind(this);
+    this.displayFormDetails = this.displayFormDetails.bind(this);
   }
 
   setPersonalInfo(newData) {
@@ -39,13 +40,29 @@ class App extends Component {
     });
   }
 
+  displayFormDetails() {
+    this.setState({
+      displayDetails: true,
+    });
+  }
+
   render() {
+
+    if (this.state.displayDetails) {
+      return (
+        <div className="cv-details">
+          <h1 className="cv-details__heading">CV Details</h1>
+          {/* <DisplayCV parseCV={this.state}/> */}
+        </div>
+      )
+    }
     return (
       <div className="cv-form">
         <h1 className="cv-form__heading">CV Form</h1>
         <PersonalInfo parseData={this.setPersonalInfo}/>
         <WorkExperience parseData={this.setWorkExperience}/>
         <EducationExperience parseData={this.setEducationExperience}/>
+        <button onClick={this.displayFormDetails}>Submit CV</button>
       </div>
     )
   }
