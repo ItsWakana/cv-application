@@ -15,33 +15,16 @@ class WorkExperience extends Component {
         this.removeJob = this.removeJob.bind(this);
     }
 
-    //instead of passing in the mapped index as a prop, we want to give each job a unique identifier so we can access them independent of the loop index. When we parse the job info, we just want to spread the id out with the rest of the existing properties. 
-
-    // addJob() {
-    //     const job = {}
-
-    //     this.setState({
-    //         jobs: [...this.state.jobs, job]
-    //     });
-    // }
-
     addJob() {
         const job = {id: uniqid()}
 
         this.setState({
             jobs: [...this.state.jobs, job]
         });
+
+        this.props.parseData(this.state);
     }
 
-    // parseJobInfo(index, obj) {
-    //     const jobsCopy = [...this.state.jobs]
-    //     jobsCopy[index] = obj;
-    //     this.setState({
-    //         jobs: jobsCopy,
-    //     });
-
-    //     console.log(this.state.jobs);
-    // }
     parseJobInfo(id, obj) {
 
         const updatedJobs = this.state.jobs.map((job) => {
@@ -58,14 +41,6 @@ class WorkExperience extends Component {
 
         this.props.parseData(updatedJobs)
     }
-
-    // removeJob(index, obj) {
-    //     const jobsCopy = [...this.state.jobs]
-    //     jobsCopy.splice(index, 1);
-    //     this.setState({
-    //         jobs: jobsCopy,
-    //     });
-    // }
 
     removeJob(id, obj) {
        const updatedJobs = this.state.jobs.filter((job) => job.id !== id);

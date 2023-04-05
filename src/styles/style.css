@@ -75,7 +75,9 @@ body {
 .school-info__button-container button,
 .work-experience__add-button,
 .education-experience__add-button,
-.cv-form__submit-cv-button {
+.cv-form__submit-cv-button,
+.cv-form__pdf-button {
+    font-size: 0.6rem;
     border-radius: 4px;
     font-weight: bold;
     padding: 8px 8px;
@@ -98,10 +100,15 @@ body {
 
 .job-info__delete-button,
 .school-info__delete-button,
-.cv-form__submit-cv-button {
+.cv-form__submit-cv-button,
+.cv-form__pdf-button {
     background: none;
     border: solid 1px var(--submit-button-clr);
     color: var(--submit-button-clr);
+}
+
+.cv-form__pdf-button {
+    text-decoration: none;
 }
 
 .personal-info__detail-container,

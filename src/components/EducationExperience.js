@@ -23,6 +23,8 @@ class EducationExperience extends Component {
         this.setState({
             education: [...this.state.education, school]
         });
+
+        this.props.parseData(this.state);
     }
 
     parseSchoolInfo(id, obj) {

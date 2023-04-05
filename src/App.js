@@ -3,6 +3,7 @@ import WorkExperience from "./components/WorkExperience";
 import EducationExperience from "./components/EducationExperience";
 import style from './styles/style.css';
 import React, { Component } from 'react';
+import PDFGenerator from "./components/PDF";
 
 
 class App extends Component {
@@ -53,6 +54,7 @@ class App extends Component {
         <div className="cv-details">
           <h1 className="cv-details__heading">CV Details</h1>
           {/* <DisplayCV parseCV={this.state}/> */}
+          {/* <PDFGenerator cvInfo={this.state}/> */}
         </div>
       )
     }
@@ -62,7 +64,8 @@ class App extends Component {
         <PersonalInfo parseData={this.setPersonalInfo}/>
         <WorkExperience parseData={this.setWorkExperience}/>
         <EducationExperience parseData={this.setEducationExperience}/>
-        <button className="cv-form__submit-cv-button"onClick={this.displayFormDetails}>Submit CV</button>
+        {/* <button className="cv-form__submit-cv-button"onClick={this.displayFormDetails}>Submit CV</button> */}
+        <PDFGenerator cvInfo={this.state}/>
       </div>
     )
   }
