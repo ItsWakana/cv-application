@@ -53,11 +53,10 @@ class EducationExperience extends Component {
         return (
             <div className="education-experience">
                 <h3 className="education-experience__heading">Education</h3>
-                <button className="education-experience__add-button" onClick={this.addSchool}>Add School</button>
                 {this.state.education.map((school) => (
-                    // <Job key={job.id} id={job.id} parseJob={this.parseJobInfo} removeJob={this.removeJob}/>
                     <School key={school.id} id={school.id} parseSchoolFunc={this.parseSchoolInfo} removeSchool={this.removeSchool}/>
-                ))}
+                    ))}
+                <button className="education-experience__add-button" onClick={this.addSchool}>Add School</button>
             </div>
         )
     } 
