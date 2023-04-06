@@ -14,25 +14,71 @@ class App extends Component {
       personalInfo: {},
       workExperience: {},
       educationExperience: {},
-      displayDetails: false,
+
+      formCompletion: [
+        { personalInfo: false },
+        { workExperience: false },
+        { educationExperience: false } 
+      ]
     }
 
     this.setPersonalInfo = this.setPersonalInfo.bind(this);
     this.setWorkExperience = this.setWorkExperience.bind(this);
     this.setEducationExperience = this.setEducationExperience.bind(this);
     this.displayFormDetails = this.displayFormDetails.bind(this);
+    this.setWorkFormCompletion = this.setWorkFormCompletion.bind(this);
+    this.setPersonalFormCompletion = this.setPersonalFormCompletion.bind(this);
+    this.setEducationFormCompletion = this.setEducationFormCompletion.bind(this);
+
   }
 
-  setPersonalInfo(newData) {
-    this.setState({
-      personalInfo: newData
+  setPersonalFormCompletion() {
+    this.setState((prevState) => {
+      return {
+        formCompletion: [
+          { personalInfo: true },
+          prevState.formCompletion[1],
+          prevState.formCompletion[2]
+        ]
+      }
     });
   }
 
+  setPersonalInfo(newData) {
+
+    this.setState({
+      personalInfo: newData,
+    });
+  }
+
+  setWorkFormCompletion() {
+    this.setState((prevState) => {
+      return {
+        formCompletion: [
+          prevState.formCompletion[0],
+          { workExperience: true },
+          prevState.formCompletion[2]
+        ]
+      }
+    });
+  }
   setWorkExperience(newData) {
     this.setState({
       workExperience: newData
     });
+  }
+
+  setEducationFormCompletion() {
+    this.setState((prevState) => {
+      return {
+        formCompletion: [
+          prevState.formCompletion[0],
+          prevState.formCompletion[1],
+          { educationExperience: true }
+        ]
+      }
+    });
+
   }
 
   setEducationExperience(newData) {
@@ -48,23 +94,15 @@ class App extends Component {
   }
 
   render() {
-
-    if (this.state.displayDetails) {
-      return (
-        <div className="cv-details">
-          <h1 className="cv-details__heading">CV Details</h1>
-          {/* <DisplayCV parseCV={this.state}/> */}
-          {/* <PDFGenerator cvInfo={this.state}/> */}
-        </div>
-      )
-    }
     return (
       <div className="cv-form">
         <h1 className="cv-form__heading">CV Form</h1>
-        <PersonalInfo parseData={this.setPersonalInfo}/>
-        <WorkExperience parseData={this.setWorkExperience}/>
-        <EducationExperience parseData={this.setEducationExperience}/>
-        {/* <button className="cv-form__submit-cv-button"onClick={this.displayFormDetails}>Submit CV</button> */}
+        <PersonalInfo parseData={this.setPersonalInfo}
+        formCompleted={this.setPersonalFormCompletion}/>
+        <WorkExperience parseData={this.setWorkExperience}
+        formCompleted={this.setWorkFormCompletion}/>
+        <EducationExperience parseData={this.setEducationExperience}
+        formCompleted={this.setEducationFormCompletion}/>
         <PDFGenerator cvInfo={this.state}/>
       </div>
     )

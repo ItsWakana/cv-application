@@ -49,7 +49,7 @@ class School extends Component {
 
     parseSchool(e) {
         e.preventDefault();
-        const { id, parseSchoolFunc } = this.props;
+        const { id, parseSchoolFunc, setFormCompletion } = this.props;
 
         for (const item in this.state) {
             if (this.state[item] === '') return;
@@ -59,6 +59,8 @@ class School extends Component {
             isCompleted: true
         });
         parseSchoolFunc(id, this.state);
+        setFormCompletion();
+
     }
 
     deleteSchool(e) {

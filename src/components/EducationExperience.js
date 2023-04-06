@@ -49,6 +49,8 @@ class EducationExperience extends Component {
         this.setState({
             education: filteredEducation,
         });
+        
+        this.props.parseData(filteredEducation);
     }
 
     render() {
@@ -56,7 +58,8 @@ class EducationExperience extends Component {
             <div className="education-experience">
                 <h3 className="education-experience__heading">Education</h3>
                 {this.state.education.map((school) => (
-                    <School key={school.id} id={school.id} parseSchoolFunc={this.parseSchoolInfo} removeSchool={this.removeSchool}/>
+                    <School key={school.id} id={school.id} parseSchoolFunc={this.parseSchoolInfo} removeSchool={this.removeSchool}
+                    setFormCompletion={this.props.formCompleted}/>
                     ))}
                 <button className="education-experience__add-button" onClick={this.addSchool}>Add School</button>
             </div>

@@ -44,7 +44,7 @@ class Job extends Component {
 
     parseJob(e) {
         e.preventDefault();
-        const { id, parseJob } = this.props;
+        const { id, parseJob, setFormCompletion } = this.props;
 
         for (const item in this.state) {
             if (this.state[item] === '') return;
@@ -54,6 +54,7 @@ class Job extends Component {
             isCompleted: true
         });
         parseJob(id, this.state);
+        setFormCompletion();
     }
 
     deleteJob(e) {

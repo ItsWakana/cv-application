@@ -48,6 +48,7 @@ class PersonalInfo extends Component {
         });
 
         this.props.parseData(this.state);
+        this.props.formCompleted();
     }
 
     handleEdit(e) {
