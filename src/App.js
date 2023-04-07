@@ -15,6 +15,7 @@ class App extends Component {
       workExperience: {},
       educationExperience: {},
 
+      //instead of storing the status of the form completion in the app file. It would make more sense to store the boolean state in each component and then when we submit or change it we can pass that data in to the methods below.
       formCompletion: [
         { personalInfo: false },
         { workExperience: false },
