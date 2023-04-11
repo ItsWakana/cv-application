@@ -22,7 +22,7 @@ class WorkExperience extends Component {
             jobs: [...this.state.jobs, job]
         });
 
-        this.props.parseData(this.state);
+        this.props.parseData(this.state, 'workExperience');
     }
 
     parseJobInfo(id, obj) {
@@ -39,7 +39,7 @@ class WorkExperience extends Component {
             jobs: updatedJobs,
         });
 
-        this.props.parseData(updatedJobs)
+        this.props.parseData(updatedJobs, 'workExperience');
     }
 
     removeJob(id, obj) {
@@ -47,9 +47,17 @@ class WorkExperience extends Component {
 
        this.setState({
             jobs: updatedJobs
+       }, () => {
+        if (this.state.jobs.length === 0) {
+            this.props.formCompleted('workExperience', false)
+           }
        });
 
-       this.props.parseData(updatedJobs);
+       this.props.parseData(updatedJobs, 'workExperience');
+
+    //    if (this.state.jobs.length === 1) {
+    //     this.props.formCompleted('workExperience', false)
+    //    }
     }
 
     //we want this component to be like the central hub that holds the state for all the different work experiences the user wants to enter. So we could have some state that holds an array of all the work experience as objects. When the user clicks to add work experience we want to call on a component that creates a singular experience component.

@@ -62,14 +62,10 @@ class PDFGenerator extends Component {
 
     render() {
         const { formCompletion } = this.props.cvInfo;
-        for (const item of formCompletion) {
 
-            for (const key in item) {
-                console.log(item[key])
-                if (!item[key]) return;
-            }
+       for (const prop in formCompletion) {
+            if (!formCompletion[prop]) return;
         }
-        
         return (
             <div>
             <PDFDownloadLink document={<CVDocument objectInfo={this.props.cvInfo} />} fileName={`${this.props.cvInfo.personalInfo.name}-CV.pdf`} className="cv-form__pdf-button">

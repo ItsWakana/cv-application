@@ -24,7 +24,7 @@ class EducationExperience extends Component {
             education: [...this.state.education, school]
         });
 
-        this.props.parseData(this.state);
+        this.props.parseData(this.state, 'educationExperience');
     }
 
     parseSchoolInfo(id, obj) {
@@ -40,7 +40,7 @@ class EducationExperience extends Component {
             education: updatedSchools
         });
 
-        this.props.parseData(updatedSchools);
+        this.props.parseData(updatedSchools, 'educationExperience');
     }
 
     removeSchool(id) {
@@ -48,9 +48,13 @@ class EducationExperience extends Component {
 
         this.setState({
             education: filteredEducation,
+        }, () => {
+            if (this.state.education.length === 0) {
+                this.props.formCompleted('educationExperience', false);
+            }
         });
         
-        this.props.parseData(filteredEducation);
+        this.props.parseData(filteredEducation, 'educationExperience');
     }
 
     render() {

@@ -15,82 +15,44 @@ class App extends Component {
       workExperience: {},
       educationExperience: {},
 
-      //instead of storing the status of the form completion in the app file. It would make more sense to store the boolean state in each component and then when we submit or change it we can pass that data in to the methods below.
-      formCompletion: [
-        { personalInfo: false },
-        { workExperience: false },
-        { educationExperience: false } 
-      ]
+      formCompletion: {
+        personalInfo: false,
+        workExperience: false,
+        educationExperience: false
+      }
     }
 
-    this.setPersonalInfo = this.setPersonalInfo.bind(this);
-    this.setWorkExperience = this.setWorkExperience.bind(this);
-    this.setEducationExperience = this.setEducationExperience.bind(this);
-    this.displayFormDetails = this.displayFormDetails.bind(this);
-    this.setWorkFormCompletion = this.setWorkFormCompletion.bind(this);
-    this.setPersonalFormCompletion = this.setPersonalFormCompletion.bind(this);
-    this.setEducationFormCompletion = this.setEducationFormCompletion.bind(this);
+    this.setFormCompletion = this.setFormCompletion.bind(this);
+    this.setFormInfo = this.setFormInfo.bind(this);
 
   }
 
-  setPersonalFormCompletion() {
-    this.setState((prevState) => {
-      return {
-        formCompletion: [
-          { personalInfo: true },
-          prevState.formCompletion[1],
-          prevState.formCompletion[2]
-        ]
+
+  setFormCompletion(propName, isCompleted) {
+    if (isCompleted) {
+      this.setState(prevState => ({
+        formCompletion: {
+          ...prevState.formCompletion,
+          [propName]: true
+        }
+      }));
+    } else {
+      
+      if (this.state[propName].length === 0) {
+        this.setState(prevState => ({
+          formCompletion: {
+            ...prevState.formCompletion,
+            [propName]: false
+          }
+        }));
       }
-    });
+    }
+
   }
 
-  setPersonalInfo(newData) {
-
+  setFormInfo(newData, propName) {
     this.setState({
-      personalInfo: newData,
-    });
-  }
-
-  setWorkFormCompletion() {
-    this.setState((prevState) => {
-      return {
-        formCompletion: [
-          prevState.formCompletion[0],
-          { workExperience: true },
-          prevState.formCompletion[2]
-        ]
-      }
-    });
-  }
-  setWorkExperience(newData) {
-    this.setState({
-      workExperience: newData
-    });
-  }
-
-  setEducationFormCompletion() {
-    this.setState((prevState) => {
-      return {
-        formCompletion: [
-          prevState.formCompletion[0],
-          prevState.formCompletion[1],
-          { educationExperience: true }
-        ]
-      }
-    });
-
-  }
-
-  setEducationExperience(newData) {
-    this.setState({
-      educationExperience: newData
-    });
-  }
-
-  displayFormDetails() {
-    this.setState({
-      displayDetails: true,
+      [propName]: newData,
     });
   }
 
@@ -98,12 +60,12 @@ class App extends Component {
     return (
       <div className="cv-form">
         <h1 className="cv-form__heading">CV Form</h1>
-        <PersonalInfo parseData={this.setPersonalInfo}
-        formCompleted={this.setPersonalFormCompletion}/>
-        <WorkExperience parseData={this.setWorkExperience}
-        formCompleted={this.setWorkFormCompletion}/>
-        <EducationExperience parseData={this.setEducationExperience}
-        formCompleted={this.setEducationFormCompletion}/>
+        <PersonalInfo parseData={this.setFormInfo}
+        formCompleted={this.setFormCompletion}/>
+        <WorkExperience parseData={this.setFormInfo}
+        formCompleted={this.setFormCompletion}/>
+        <EducationExperience parseData={this.setFormInfo}
+        formCompleted={this.setFormCompletion}/>
         <PDFGenerator cvInfo={this.state}/>
       </div>
     )

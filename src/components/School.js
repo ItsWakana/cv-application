@@ -59,7 +59,7 @@ class School extends Component {
             isCompleted: true
         });
         parseSchoolFunc(id, this.state);
-        setFormCompletion();
+        setFormCompletion('educationExperience', true);
 
     }
 

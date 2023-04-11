@@ -54,7 +54,7 @@ class Job extends Component {
             isCompleted: true
         });
         parseJob(id, this.state);
-        setFormCompletion();
+        setFormCompletion('workExperience', true);
     }
 
     deleteJob(e) {
