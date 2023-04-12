@@ -35,7 +35,7 @@ class CVDocument extends Component {
                         <div key={obj.id}>
                             <Text style={styles.detailBold}>{obj.schoolName}</Text>
                             <Text style={styles.detail}>{obj.fieldOfStudy}</Text>
-                            <Text style={styles.detail}>{obj.dateOfStudy}</Text>
+                            <Text style={styles.detail}>{obj.dateFrom} - {obj.dateTo}</Text>
                             <Text style={styles.detail}>---------</Text>
                         </div>
                     ))} 
@@ -45,6 +45,7 @@ class CVDocument extends Component {
                         <div key={job.id}>
                             <Text style={styles.detailBold}>{job.title}</Text>
                             <Text style={styles.detail}>{job.company}</Text>
+                            <Text style={styles.detail}>{job.dateFrom} - {job.dateTo}</Text>
                             <Text style={styles.detail}>---------</Text>
                         </div>
                     ))}               

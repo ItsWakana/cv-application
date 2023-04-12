@@ -7,11 +7,15 @@ class Job extends Component {
         this.state = {
             title: '',
             company: '',
+            dateFrom: '',
+            dateTo: '',
             isCompleted: false
         }
 
         this.handleCompanyChange = this.handleCompanyChange.bind(this);
         this.handleTitleChange = this.handleTitleChange.bind(this);
+        this.handleDateFromChange = this.handleDateFromChange.bind(this);
+        this.handleDateToChange = this.handleDateToChange.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.parseJob = this.parseJob.bind(this);
         this.deleteJob = this.deleteJob.bind(this);
@@ -27,6 +31,18 @@ class Job extends Component {
     handleTitleChange(e) {
         this.setState({
             title: e.target.value,
+        });
+    }
+
+    handleDateFromChange(e) {
+        this.setState({
+            dateFrom: e.target.value,
+        });
+    }
+
+    handleDateToChange(e) {
+        this.setState({
+            dateTo: e.target.value,
         });
     }
 
@@ -65,7 +81,7 @@ class Job extends Component {
     }
 
     render() {
-        const { title, company } = this.state;
+        const { title, company, dateFrom, dateTo } = this.state;
 
         if (this.state.isCompleted) {
             return (
@@ -76,6 +92,9 @@ class Job extends Component {
                     </div>
                     <div className="job-info__detail-container">
                         <h4>Company: {company}</h4>
+                    </div>
+                    <div className="job-info__detail-container">
+                        <h4>From: {dateFrom} To: {dateTo}</h4>
                     </div>
                     <div className="job-info__button-container">
                         <button className="job-info__edit-button" onClick={this.handleEdit}>Edit</button>
@@ -92,6 +111,14 @@ class Job extends Component {
                 </div>
                 <div className="job-info__input-container">
                     <input type="text" value={company} onChange={this.handleCompanyChange} placeholder="Company"></input>
+                </div>
+                <div class="job-info__date-container">
+                    <div className="job-info__input-container">
+                        <input type="date" value={dateFrom} onChange={this.handleDateFromChange}></input>
+                    </div>
+                    <div className="job-info__input-container">
+                        <input type="date" value={dateTo} onChange={this.handleDateToChange}></input>
+                    </div>
                 </div>
                 <div className="job-info__button-container">
                     <button className="job-info__add-button" type="submit" onClick={this.parseJob}>Add</button>

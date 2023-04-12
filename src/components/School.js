@@ -7,13 +7,15 @@ class School extends Component {
         this.state = {
             schoolName: '',
             fieldOfStudy: '',
-            dateOfStudy: '',
+            dateFrom: '',
+            dateTo: '',
             isCompleted: false
         }
 
         this.handleSchoolChange = this.handleSchoolChange.bind(this);
         this.handleStudyChange = this.handleStudyChange.bind(this);
-        this.handleDateChange = this.handleDateChange.bind(this);
+        this.handleDateFromChange = this.handleDateFromChange.bind(this);
+        this.handleDateToChange = this.handleDateToChange.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.parseSchool = this.parseSchool.bind(this);
         this.deleteSchool = this.deleteSchool.bind(this);
@@ -33,9 +35,15 @@ class School extends Component {
         });
     }
 
-    handleDateChange(e) {
+    handleDateFromChange(e) {
         this.setState({
-            dateOfStudy: e.target.value,
+            dateFrom: e.target.value,
+        });
+    }
+
+    handleDateToChange(e) {
+        this.setState({
+            dateTo: e.target.value,
         });
     }
 
@@ -74,7 +82,8 @@ class School extends Component {
         const {
             schoolName,
             fieldOfStudy,
-            dateOfStudy
+            dateFrom,
+            dateTo
         } = this.state;
 
         if (this.state.isCompleted) {
@@ -88,7 +97,7 @@ class School extends Component {
                         <h4>Field of Study: {fieldOfStudy}</h4>
                     </div>
                     <div className="school-info__detail-container">
-                        <h4>Date of Study: {dateOfStudy}</h4>
+                        <h4>From: {dateFrom} To: {dateTo}</h4>
                     </div>
                     <div className="school-info__button-container">
                         <button className="school-info__edit-button" onClick={this.handleEdit}>Edit</button>
@@ -104,10 +113,15 @@ class School extends Component {
                     <input type="text" value={schoolName} onChange={this.handleSchoolChange} placeholder="School/University Name"></input>
                 </div>
                 <div className="school-info__input-container">
-                    <input type="text" value={fieldOfStudy} onChange={this.handleStudyChange} placeholder="Field of Study"></input>
-                </div>
-                <div className="school-info__input-container">
-                    <input type="date" value={dateOfStudy} onChange={this.handleDateChange} placeholder="Date of Study"></input>
+                        <input type="text" value={fieldOfStudy} onChange={this.handleStudyChange} placeholder="Field of Study"></input>
+                    </div>
+                    <div class="school-info__date-container">
+                    <div className="school-info__input-container">
+                        <input type="date" value={dateFrom} onChange={this.handleDateFromChange}></input>
+                    </div>
+                    <div className="school-info__input-container">
+                        <input type="date" value={dateTo} onChange={this.handleDateToChange}></input>
+                    </div>
                 </div>
                 <div className="school-info__button-container">
                     <button className="school-info__add-button" type="submit" onClick={this.parseSchool}>Add</button>

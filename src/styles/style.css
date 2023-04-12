@@ -46,6 +46,11 @@ body {
     gap: 11px;
 }
 
+.job-info__date-container,
+.school-info__date-container {
+    display: flex;
+    gap: 8px;
+}
 .personal-info__heading,
 .work-experience__heading,
 .job-info__heading,
