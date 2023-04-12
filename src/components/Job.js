@@ -19,6 +19,7 @@ class Job extends Component {
         this.handleEdit = this.handleEdit.bind(this);
         this.parseJob = this.parseJob.bind(this);
         this.deleteJob = this.deleteJob.bind(this);
+        this.validInput = this.validInput.bind(this);
 
     }
 
@@ -58,13 +59,21 @@ class Job extends Component {
         });
     }
 
+    validInput() {
+
+        const { dateFrom, dateTo } = this.state;
+
+        for (const item in this.state) {
+            if (this.state[item] === '') return false;
+        }
+
+        return dateFrom < dateTo; 
+    }
     parseJob(e) {
         e.preventDefault();
         const { id, parseJob, setFormCompletion } = this.props;
 
-        for (const item in this.state) {
-            if (this.state[item] === '') return;
-        }
+        if (!this.validInput()) return;
 
         this.setState({
             isCompleted: true

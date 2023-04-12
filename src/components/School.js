@@ -19,6 +19,7 @@ class School extends Component {
         this.handleEdit = this.handleEdit.bind(this);
         this.parseSchool = this.parseSchool.bind(this);
         this.deleteSchool = this.deleteSchool.bind(this);
+        this.validInput = this.validInput.bind(this);
 
 
     }
@@ -55,13 +56,25 @@ class School extends Component {
         });
     }
 
+    validInput() {
+
+        const { dateFrom, dateTo } = this.state;
+
+        for (const item in this.state) {
+            if (this.state[item] === '') return false;
+        }
+
+        return dateFrom < dateTo; 
+    }
+
     parseSchool(e) {
         e.preventDefault();
         const { id, parseSchoolFunc, setFormCompletion } = this.props;
 
-        for (const item in this.state) {
-            if (this.state[item] === '') return;
-        }
+        // for (const item in this.state) {
+        //     if (this.state[item] === '') return;
+        // }
+        if (!this.validInput()) return;
 
         this.setState({
             isCompleted: true
