@@ -47,7 +47,7 @@ class PersonalInfo extends Component {
             isCompleted: true
         });
 
-        this.props.parseData(this.state);
+        this.props.parseData(this.state, 'personalInfo');
         this.props.formCompleted('personalInfo', true);
     }
 
