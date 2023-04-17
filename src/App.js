@@ -2,75 +2,58 @@ import PersonalInfo from "./components/PersonalInfo";
 import WorkExperience from "./components/WorkExperience";
 import EducationExperience from "./components/EducationExperience";
 import style from './styles/style.css';
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import PDFGenerator from "./components/PDF";
 
+const App = () => {
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+  const [userDetail, setUserDetail] = useState({
+    personalInfo: {},
+    workExperience: {},
+    educationExperience: {}
+  });
 
-    this.state = {
-      personalInfo: {},
-      workExperience: {},
-      educationExperience: {},
+  const [formCompleted, setFormCompleted] = useState({
+    personalInfo: false,
+    workExperience: false,
+    educationExperience: false,
+  });
 
-      formCompletion: {
-        personalInfo: false,
-        workExperience: false,
-        educationExperience: false
-      }
-    }
-
-    this.setFormCompletion = this.setFormCompletion.bind(this);
-    this.setFormInfo = this.setFormInfo.bind(this);
-
-  }
-
-
-  setFormCompletion(propName, isCompleted) {
+  const setFormCompletion = (propName, isCompleted) => {
     if (isCompleted) {
-      this.setState(prevState => ({
-        formCompletion: {
-          ...prevState.formCompletion,
-          [propName]: true
-        }
-      }));
-    } else {
       
-      if (this.state[propName].length === 0) {
-        this.setState(prevState => ({
-          formCompletion: {
-            ...prevState.formCompletion,
-            [propName]: false
-          }
-        }));
-      }
+      setFormCompleted({
+        ...formCompleted,
+        [propName]: true
+      });
+    } else {
+        setFormCompleted({
+          ...formCompleted,
+          [propName]: false
+        })
     }
-
   }
 
-  setFormInfo(newData, propName) {
-    this.setState({
+  const setFormInfo = (newData, propName) => {
+    setUserDetail({
+      ...userDetail,
       [propName]: newData,
-    });
+    })
   }
 
-  render() {
-    return (
-      <div className="cv-form">
-        <h1 className="cv-form__heading">CV Form</h1>
-        <PersonalInfo parseData={this.setFormInfo}
-        formCompleted={this.setFormCompletion}/>
-        <WorkExperience parseData={this.setFormInfo}
-        formCompleted={this.setFormCompletion}/>
-        <EducationExperience parseData={this.setFormInfo}
-        formCompleted={this.setFormCompletion}/>
-        <PDFGenerator cvInfo={this.state}/>
-      </div>
-    )
-  }
+  return (
+    <div className="cv-form">
+      <h1 className="cv-form__heading">CV Form</h1>
+      <PersonalInfo parseData={setFormInfo}
+      formCompleted={setFormCompletion}/>
+      <WorkExperience parseData={setFormInfo}
+      formCompleted={setFormCompletion}/>
+      <EducationExperience parseData={setFormInfo}
+      formCompleted={setFormCompletion}/>
+      <PDFGenerator formStatus={formCompleted} 
+      cvInfo={userDetail}/>
+    </div>
+  )
 }
-
 
 export default App;

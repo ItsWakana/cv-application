@@ -1,33 +1,23 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import uniqid from 'uniqid';
 import Job from './Job';
 
-class WorkExperience extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            jobs: []
-        }
+const WorkExperience = (props) => {
 
-        this.addJob = this.addJob.bind(this);
-        this.parseJobInfo = this.parseJobInfo.bind(this);
-        this.removeJob = this.removeJob.bind(this);
+    const [jobs, setJobs] = useState([]);
+
+    const addJob = () => {
+        const job = { id: uniqid() }
+
+        setJobs([...jobs, job]);
+
+        props.parseData(jobs, 'workExperience');
     }
 
-    addJob() {
-        const job = {id: uniqid()}
+    const parseJobInfo = (id, obj) => {
 
-        this.setState({
-            jobs: [...this.state.jobs, job]
-        });
-
-        this.props.parseData(this.state, 'workExperience');
-    }
-
-    parseJobInfo(id, obj) {
-
-        const updatedJobs = this.state.jobs.map((job) => {
+        const updatedJobs = jobs.map((job) => {
             if (job.id === id) {
                 return { ...job, ...obj }
             } else {
@@ -35,46 +25,31 @@ class WorkExperience extends Component {
             }
         });
 
-        this.setState({
-            jobs: updatedJobs,
-        });
+        setJobs(updatedJobs);
 
-        this.props.parseData(updatedJobs, 'workExperience');
+        props.parseData(updatedJobs, 'workExperience');
+    }
+    
+    const removeJob = (id, obj) => {
+        const updatedJobs = jobs.filter((job) => job.id !== id);
+
+        setJobs(updatedJobs);
+
+        props.parseData(updatedJobs, 'workExperience');
+        if (updatedJobs.length === 0) {
+            props.formCompleted('workExperience', false)
+        }
     }
 
-    removeJob(id, obj) {
-       const updatedJobs = this.state.jobs.filter((job) => job.id !== id);
-
-       this.setState({
-            jobs: updatedJobs
-       }, () => {
-        if (this.state.jobs.length === 0) {
-            this.props.formCompleted('workExperience', false)
-           }
-       });
-
-       this.props.parseData(updatedJobs, 'workExperience');
-
-    //    if (this.state.jobs.length === 1) {
-    //     this.props.formCompleted('workExperience', false)
-    //    }
-    }
-
-    //we want this component to be like the central hub that holds the state for all the different work experiences the user wants to enter. So we could have some state that holds an array of all the work experience as objects. When the user clicks to add work experience we want to call on a component that creates a singular experience component.
-
-    //we can map over the jobs array in state and create a new job component for each one. A new job could be added in state when the user clicks add job button.
-
-    render() {
-        return (
-            <div className="work-experience">
-                <h3 className="work-experience__heading">Work Experience</h3>
-                {this.state.jobs.map((job) => (
-                    <Job key={job.id} id={job.id} parseJob={this.parseJobInfo} removeJob={this.removeJob} setFormCompletion={this.props.formCompleted}/>
-                    ))}
-                <button className="work-experience__add-button" onClick={this.addJob}>Add Job</button>
-            </div>
-        )
-    }
+    return (
+        <div className="work-experience">
+            <h3 className="work-experience__heading">Work Experience</h3>
+            {jobs.map((job) => (
+                <Job key={job.id} id={job.id} parseJob={parseJobInfo} removeJob={removeJob} setFormCompletion={props.formCompleted}/>
+                ))}
+            <button className="work-experience__add-button" onClick={addJob}>Add Job</button>
+        </div>
+    )
 }
 
 export default WorkExperience;

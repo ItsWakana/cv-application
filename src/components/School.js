@@ -1,148 +1,109 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-class School extends Component {
-    constructor(props) {
-        super(props);
+const School = (props) => {
 
-        this.state = {
-            schoolName: '',
-            fieldOfStudy: '',
-            dateFrom: '',
-            dateTo: '',
-            isCompleted: false
-        }
+    const [schoolName, setSchoolName] = useState('');
+    const [studyName, setStudyName] = useState('');
+    const [dateFrom, setDateFrom] = useState('');
+    const [dateTo, setDateTo] = useState('');
+    const [isCompleted, setIsCompleted] = useState('');
 
-        this.handleSchoolChange = this.handleSchoolChange.bind(this);
-        this.handleStudyChange = this.handleStudyChange.bind(this);
-        this.handleDateFromChange = this.handleDateFromChange.bind(this);
-        this.handleDateToChange = this.handleDateToChange.bind(this);
-        this.handleEdit = this.handleEdit.bind(this);
-        this.parseSchool = this.parseSchool.bind(this);
-        this.deleteSchool = this.deleteSchool.bind(this);
-        this.validInput = this.validInput.bind(this);
-
-
+    const handleSchoolChange = (e) => {
+        setSchoolName(e.target.value);
     }
 
-    handleSchoolChange(e) {
-        this.setState({
-            schoolName: e.target.value,
-        });
+    const handleStudyChange = (e) => {
+        setStudyName(e.target.value);
     }
 
-    handleStudyChange(e) {
-        this.setState({
-            fieldOfStudy: e.target.value,
-        });
+    const handleDateFromChange = (e) => {
+        setDateFrom(e.target.value);
     }
 
-    handleDateFromChange(e) {
-        this.setState({
-            dateFrom: e.target.value,
-        });
+    const handleDateToChange = (e) => {
+        setDateTo(e.target.value);
     }
 
-    handleDateToChange(e) {
-        this.setState({
-            dateTo: e.target.value,
-        });
-    }
-
-    handleEdit(e) {
+    const handleEdit = (e) => {
         e.preventDefault();
 
-        this.setState({
-            isCompleted: false,
-        });
+        setIsCompleted(false);
     }
 
-    validInput() {
+    const validInput = () => {
+        const formDetails = [schoolName, studyName, dateFrom, dateTo];
 
-        const { dateFrom, dateTo } = this.state;
-
-        for (const item in this.state) {
-            if (this.state[item] === '') return false;
+        for (const prop in formDetails) {
+            if (formDetails[prop] === '') return false;
         }
 
         return dateFrom < dateTo; 
     }
 
-    parseSchool(e) {
+    const parseSchool = (e) => {
         e.preventDefault();
-        const { id, parseSchoolFunc, setFormCompletion } = this.props;
+        const { id, parseSchoolFunc, setFormCompletion } = props;
 
-        // for (const item in this.state) {
-        //     if (this.state[item] === '') return;
-        // }
-        if (!this.validInput()) return;
+        if (!validInput()) return;
 
-        this.setState({
-            isCompleted: true
-        });
-        parseSchoolFunc(id, this.state);
+        setIsCompleted(true);
+
+        parseSchoolFunc(id, { schoolName, studyName, dateFrom, dateTo });
         setFormCompletion('educationExperience', true);
 
     }
 
-    deleteSchool(e) {
+    const deleteSchool = (e) => {
         e.preventDefault();
-        const { id, removeSchool } = this.props;
+        const { id, removeSchool } = props;
 
         removeSchool(id);
     }
 
-    render() {
-        const {
-            schoolName,
-            fieldOfStudy,
-            dateFrom,
-            dateTo
-        } = this.state;
-
-        if (this.state.isCompleted) {
-            return (
+    return (
+        <>
+            {isCompleted ? (
                 <div className="school-info" style={{color: 'white'}}>
                     <h3 className="school-info__heading">School Info</h3>
                     <div className="school-info__detail-container">
                         <h4>School/University Name: {schoolName}</h4>
                     </div>
                     <div className="school-info__detail-container">
-                        <h4>Field of Study: {fieldOfStudy}</h4>
+                        <h4>Field of Study: {studyName}</h4>
                     </div>
                     <div className="school-info__detail-container">
                         <h4>From: {dateFrom} To: {dateTo}</h4>
                     </div>
                     <div className="school-info__button-container">
-                        <button className="school-info__edit-button" onClick={this.handleEdit}>Edit</button>
-                        <button className="school-info__delete-button" onClick={this.deleteSchool}>Delete</button>
+                        <button className="school-info__edit-button" onClick={handleEdit}>Edit</button>
+                        <button className="school-info__delete-button" onClick={deleteSchool}>Delete</button>
                     </div>
                 </div>
-            )
-        }
-        return (
-            <form className="school-info">
-                <h3 className="school-info__heading">School Info</h3>
-                <div className="school-info__input-container">
-                    <input type="text" value={schoolName} onChange={this.handleSchoolChange} placeholder="School/University Name"></input>
-                </div>
-                <div className="school-info__input-container">
-                        <input type="text" value={fieldOfStudy} onChange={this.handleStudyChange} placeholder="Field of Study"></input>
-                    </div>
-                    <div class="school-info__date-container">
+            ) : (
+                <form className="school-info">
+                    <h3 className="school-info__heading">School Info</h3>
                     <div className="school-info__input-container">
-                        <input type="date" value={dateFrom} onChange={this.handleDateFromChange}></input>
+                        <input type="text" value={schoolName} onChange={handleSchoolChange} placeholder="School/University Name"></input>
                     </div>
                     <div className="school-info__input-container">
-                        <input type="date" value={dateTo} onChange={this.handleDateToChange}></input>
+                            <input type="text" value={studyName} onChange={handleStudyChange} placeholder="Field of Study"></input>
+                        </div>
+                        <div className="school-info__date-container">
+                        <div className="school-info__input-container">
+                            <input type="date" value={dateFrom} onChange={handleDateFromChange}></input>
+                        </div>
+                        <div className="school-info__input-container">
+                            <input type="date" value={dateTo} onChange={handleDateToChange}></input>
+                        </div>
                     </div>
-                </div>
-                <div className="school-info__button-container">
-                    <button className="school-info__add-button" type="submit" onClick={this.parseSchool}>Add</button>
-                    <button className="school-info__delete-button" onClick={this.deleteSchool}>Delete</button>
-                </div>
-            </form>
-        )
-    }
+                    <div className="school-info__button-container">
+                        <button className="school-info__add-button" type="submit" onClick={parseSchool}>Add</button>
+                        <button className="school-info__delete-button" onClick={deleteSchool}>Delete</button>
+                    </div>
+                </form>
+            )}
+        </>
+    )
 }
 
 export default School;

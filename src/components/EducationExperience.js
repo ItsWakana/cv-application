@@ -1,34 +1,23 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import uniqid from 'uniqid';
 import School from './School';
 
-class EducationExperience extends Component {
-    constructor(props) {
-        super(props);
+const EducationExperience = (props) => {
 
-        this.state = {
-            education: []
-        }
+    const [education, setEducation] = useState([]);
 
-        this.addSchool = this.addSchool.bind(this);
-        this.parseSchoolInfo = this.parseSchoolInfo.bind(this);
-        this.removeSchool = this.removeSchool.bind(this);
-    }
-
-    addSchool(e) {
+    const addSchool = (e) => {
         e.preventDefault();
 
         const school = { id: uniqid() }
 
-        this.setState({
-            education: [...this.state.education, school]
-        });
+        setEducation([...education, school])
 
-        this.props.parseData(this.state, 'educationExperience');
+        props.parseData(education, 'educationExperience');
     }
 
-    parseSchoolInfo(id, obj) {
-        const updatedSchools = this.state.education.map((school) => {
+    const parseSchoolInfo = (id, obj) => {
+        const updatedSchools = education.map((school) => {
             if (school.id === id) {
                 return { ...school, ...obj }
             } else {
@@ -36,39 +25,33 @@ class EducationExperience extends Component {
             }
         });
 
-        this.setState({
-            education: updatedSchools
-        });
+        setEducation(updatedSchools);
 
-        this.props.parseData(updatedSchools, 'educationExperience');
+        props.parseData(updatedSchools, 'educationExperience');
     }
 
-    removeSchool(id) {
-        const filteredEducation = this.state.education.filter((school) => school.id !== id);
+    const removeSchool = (id) => {
+        const filteredEducation = education.filter((school) => school.id !== id);
 
-        this.setState({
-            education: filteredEducation,
-        }, () => {
-            if (this.state.education.length === 0) {
-                this.props.formCompleted('educationExperience', false);
-            }
-        });
+        setEducation(filteredEducation);
+
+        if (filteredEducation.length === 0) {
+            props.formCompleted('educationExperience', false);
+        }
         
-        this.props.parseData(filteredEducation, 'educationExperience');
+        props.parseData(filteredEducation, 'educationExperience');
     }
 
-    render() {
-        return (
-            <div className="education-experience">
-                <h3 className="education-experience__heading">Education</h3>
-                {this.state.education.map((school) => (
-                    <School key={school.id} id={school.id} parseSchoolFunc={this.parseSchoolInfo} removeSchool={this.removeSchool}
-                    setFormCompletion={this.props.formCompleted}/>
-                    ))}
-                <button className="education-experience__add-button" onClick={this.addSchool}>Add School</button>
-            </div>
-        )
-    } 
+    return (
+        <div className="education-experience">
+            <h3 className="education-experience__heading">Education</h3>
+            {education.map((school) => (
+                <School key={school.id} id={school.id} parseSchoolFunc={parseSchoolInfo} removeSchool={removeSchool}
+                setFormCompletion={props.formCompleted}/>
+                ))}
+            <button className="education-experience__add-button" onClick={addSchool}>Add School</button>
+        </div>
+    )
 }
 
 export default EducationExperience;
